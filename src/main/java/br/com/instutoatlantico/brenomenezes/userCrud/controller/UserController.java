@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -26,5 +26,11 @@ public class UserController {
             List<User> users = userRepository.findUserById(id);
             return UserDto.convert(users);
         }
+    }
+
+    @GetMapping("/{id}")
+    public UserDto findById(@PathVariable Long id) {
+        User user = userRepository.getOne(id);
+        return new UserDto(user);
     }
 }
