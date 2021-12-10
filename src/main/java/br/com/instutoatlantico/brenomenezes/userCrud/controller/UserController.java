@@ -1,5 +1,6 @@
 package br.com.instutoatlantico.brenomenezes.userCrud.controller;
 
+import br.com.instutoatlantico.brenomenezes.userCrud.controller.dto.UpdateUserDto;
 import br.com.instutoatlantico.brenomenezes.userCrud.controller.dto.UserDto;
 import br.com.instutoatlantico.brenomenezes.userCrud.controller.form.UpdateUserForm;
 import br.com.instutoatlantico.brenomenezes.userCrud.controller.form.UserForm;
@@ -47,9 +48,9 @@ public class UserController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UpdateUserForm form) {
+    public ResponseEntity<UpdateUserDto> update(@PathVariable Long id, @RequestBody UpdateUserForm form) {
         User user = form.update(id, userRepository);
 
-        return ResponseEntity.ok(new UserDto(user));
+        return ResponseEntity.ok(new UpdateUserDto(user));
     }
 }
