@@ -1,6 +1,8 @@
 package br.com.instutoatlantico.brenomenezes.userCrud.controller;
 
+import br.com.instutoatlantico.brenomenezes.userCrud.controller.dto.UpdateUserDto;
 import br.com.instutoatlantico.brenomenezes.userCrud.controller.dto.UserDto;
+import br.com.instutoatlantico.brenomenezes.userCrud.controller.form.UpdateUserForm;
 import br.com.instutoatlantico.brenomenezes.userCrud.controller.form.UserForm;
 import br.com.instutoatlantico.brenomenezes.userCrud.model.User;
 import br.com.instutoatlantico.brenomenezes.userCrud.repository.UserRepository;
@@ -9,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
+import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 
@@ -40,5 +44,13 @@ public class UserController {
 
         URI uri = uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(uri).body(new UserDto(user));
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<UpdateUserDto> update(@PathVariable Long id, @RequestBody UpdateUserForm form) {
+        User user = form.update(id, userRepository);
+
+        return ResponseEntity.ok(new UpdateUserDto(user));
     }
 }
