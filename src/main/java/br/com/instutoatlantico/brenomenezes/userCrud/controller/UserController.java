@@ -30,6 +30,9 @@ public class UserController {
     @Value("${GITHUB_URL}")
     private String baseUrl;
 
+//    CONTAINER ENVIRONMENT
+//    URI baseUrl = URI.create(System.getenv("GITHUB_URL"));
+
     @GetMapping
     @ResponseBody
     public List<UserDto> list(Long id) {

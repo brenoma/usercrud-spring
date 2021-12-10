@@ -8,6 +8,14 @@ ENV ADDITIONAL_OPTS=${ADDITIONAL_OPTS}
 
 WORKDIR /opt/userCrud
 
+COPY entrypoint.sh entrypoint.sh
+
+COPY .env.example .env.example
+
+RUN chmod +x ./entrypoint.sh
+
+RUN ./entrypoint.sh
+
 COPY /target/userCrud*.jar app.jar
 
 SHELL ["/bin/sh", "-c"]
