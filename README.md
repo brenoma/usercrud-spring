@@ -6,6 +6,8 @@ Tabela de conteúdos
 * [Tabela de conteúdos](#tabela-de-conteúdos)
 * [Descrição do Projeto](#descrição-do-projeto)
     * [Requisitos](#requisitos)
+    * [Bônus](#bônus)
+* [Features](#features)
     * [Features Backend](#features-backend)
     * [Features Container](#features-container)
     * [Features Documentação](#features-docs)
@@ -34,10 +36,17 @@ a uma API pública do Github.</p>
 
 ### Requisitos
 
-- Criação de endpoints de usuários
-- Consumo de API externa do github
-- Configuração de banco em variáveis de ambiente
-- Criação de imagens 
+- [x] CRUD Usuário.
+- [x] Consumo de API externa do github.
+
+### Bônus
+
+- [x] Construir Imagem Docker e Publicar no Dockerhub.
+- [x] Criar Arquivo docker-compose com todos os serviços e versionar juntamente com o projeto.
+- [x] As configurações dos bancos de dados, porta, etc devem ser recuperadas através de variáveis de
+  ambiente.
+- [x] Documentação da API REST.
+- [ ] Testes unitários
 
 ### Features Backend
 
@@ -46,17 +55,21 @@ a uma API pública do Github.</p>
 - [x] DTO usuário
 - [x] GET listar usuários
 - [x] GET achar usuário por ID 
-- [ ] Cadastro de usuário
+- [x] POST Cadastro de usuário
+- [x] PUT Atualização de dados do usuário
+- [x] DELETE Remoção de usuário da base
+- [x] GET requisição externa para API do Github
 
 ### Features Container
 
 - [x] Criação da imagem Dockerfile
 - [x] Criação do docker-compose
 - [x] Controller de usuário
+- [x] Variáveis de ambiente
 
 ### Features Documentação
 
-- [ ] Instalação do Swagger
+- [x] Swagger-ui
 
 ## Instalação
 
@@ -69,6 +82,9 @@ $ git clone <https://github.com/brenoma/usercrud-spring>
 
 # Acesse a pasta do backend no terminal/cmd
 $ cd usercrud-spring
+
+# Faça o build do projeto Maven
+$ mvn clean install
 ```
 ### Subindo os containers
 
@@ -76,7 +92,8 @@ $ cd usercrud-spring
 # Faça o build dos containers
 $ docker-compose up -d --build
 
-# O servidor Tomcat inciará na porta -> 3000 - Use o postman na rota <http://localhost:3000>
+# O servidor Tomcat inciará na porta -> 8081 - Use o postman na rota <http://localhost:8081>
+# O Swagger estará na mesma porta do Tomcat -> 8081
 # O banco iniciará na porta -> 5432
 ```
 ## Tecnologias
